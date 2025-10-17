@@ -35,3 +35,15 @@ for lettera in lista_vocali:
         print("\"" ,lettera,"\" compare ")
 #        c = c + 1
 #print(c)
+
+lista_spesa = ["pere","mele","arance","banane"]
+totale = 0
+
+print("Ciao, con questo programma ti dico quanto spendi")
+
+for elemento in lista_spesa:
+    print("Quanti Kg di", elemento, "vuoi comprare?")
+    kg = int(input())
+    totale = totale + 2*kg
+
+print("il toltale é ", totale)

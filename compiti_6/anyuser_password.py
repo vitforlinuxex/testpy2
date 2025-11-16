@@ -34,3 +34,15 @@ def check_login(username, password):
         return True
     else:
         return False
+
+def check_user(username):
+    email = f"{username}"
+    if not os.path.exists(FILE_NAME):
+        return False
+    with open(FILE_NAME, 'r') as f:
+        users = anyjson.deserialize(f.read())
+    
+    if email in users:
+        return True
+    else:
+        return False

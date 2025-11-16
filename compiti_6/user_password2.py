@@ -1,5 +1,5 @@
 # ------------  SVILUPPATORE 3) --------------
-import scrivi_su_file_nella_home
+
 
 
 """
@@ -13,7 +13,8 @@ print("Benvenuto nella pagina di ingresso al nostro sito.\nSe vuoi Registrarti p
 
 login = int(input())
 import _9_2_verifica_requisiti
-import scrivi_su_file_nella_home
+#import scrivi_su_file_nella_home
+import anyuser_password
 
 if login == 1:
     print("Benvenuto nella pagina di iscrizione al nostro sito.\nPer registrarti dovrai scegliere uno username inserendo la tua email e una password che rispetti i seguenti requisiti:")
@@ -22,7 +23,7 @@ if login == 1:
     while True:
         user = input("Scegli il nome utente: \n\t")
         if _9_2_verifica_requisiti.verifica_user(user): break
-        else: print("Attenzione, inserire una email valida!")
+        else: print("Attenzione, inserire una email in formato user@domain.com!")
 
     password = input("Scegli la tua password: \n\t")
     while not _9_2_verifica_requisiti.verifica_password(password):
@@ -30,12 +31,13 @@ if login == 1:
         password = input("Scegli la tua password \n\t")
 
     import anyuser_password
-    anyuser_password.save_user(user, password)
-
-    print("User e password rispettano i requisiti.\nTi verrà inviata una email con il riepilogo dei dati di login. \nOra verrai reindirizzato alla schermata di login.")
-    print(f"\n\n*-------------------------*\nDati di Login:\n\t\tUsername:\t{user}\n\t\tPassword:\t{password}\n*-------------------------*")
-    variabile = f"\n\n*-------------------------*\nDati di Login:\n\t\tUsername:\t{user}\n\t\tPassword:\t{password}\n*-------------------------*"
-    scrivi_su_file_nella_home.scrivi_su_file_nella_home("user_pass_output_"+user+".txt", variabile)
+    if not anyuser_password.check_user(user):
+        anyuser_password.save_user(user, password)
+        print("User e password rispettano i requisiti.\nTi verrà inviata una email con il riepilogo dei dati di login. \nOra verrai reindirizzato alla schermata di login.")
+        print(f"\n\n*-------------------------*\nDati di Login:\n\t\tUsername:\t{user}\n\t\tPassword:\t{password}\n*-------------------------*")
+        variabile = f"\n\n*-------------------------*\nDati di Login:\n\t\tUsername:\t{user}\n\t\tPassword:\t{password}\n*-------------------------*"
+        scrivi_su_file_nella_home.scrivi_su_file_nella_home("user_pass_output_"+user+".txt", variabile)
+    else: print("Utente o password non validi riprovare Login")
 
 # e la registrazione è fatta... ora pensiamo al login
 if login == 2:

@@ -50,6 +50,9 @@ slittino donne
 hockey vincente prima partita 3 giorno contro vincente 3 giorno seconda partita (mattina)
 
 premiazione
+
+aggiunto per albero di natale: mi faresti una funzione un python da tenere in un file separato  per generare un albero di natale centrato nel terminale?
+
 """
 #---- importamenti
 import random
@@ -64,6 +67,7 @@ from gara_pattinaggio_velocita import gara_pattinaggio_velocita
 from gara_sci_discesa import gara_sci_discesa
 from gara_slittino_uomini import gara_slittino_uomini
 from stampa_medagliere import stampa_medagliere
+from albero_natale import albero_natale
 #---- fine importamenti
 
 # Atleti buffi (nome con cognome separati da spazio)
@@ -166,7 +170,11 @@ def hockey_partita(squadra1, squadra2, momento):
             return vincitore
 
 def main():
-    print("Benvenuti alle Olimpiadi Invernali buffe!")
+    print("\tBenvenuti alle Olimpiadi Invernali buffe!")
+    print("\n") 
+    for o in"jzd360 1zlpwci 3ydgr29 20pzv5u jzd360 149ytc b8n40".split():print ("\t\t", bin(int(o,36))[2:].replace('0',' ').replace('1','#').rjust(34))
+    p=input("\n\n\tpremi invio per la prima giornata\n")
+
 
     # Giorno 1
     print("\n--- Giorno 1 ---")
@@ -174,6 +182,7 @@ def main():
     gara_sci_discesa(nazioni, team_atleti, impianti, assegna_medaglie)
     gara_slittino_uomini(nazioni, team_atleti, impianti, assegna_medaglie)
     vincitore1 = hockey_partita(nazioni[0], nazioni[1], "sera")
+    p=input("\n\n\tpremi invio per la prossima giornata\n")
 
     # Giorno 2
     print("\n--- Giorno 2 ---")
@@ -181,6 +190,7 @@ def main():
     gara_sci_slalom(nazioni, team_atleti, impianti, assegna_medaglie)
     gara_bob_uomini(nazioni, team_atleti, impianti, assegna_medaglie)
     vincitore2 = hockey_partita(nazioni[2], nazioni[3], "sera")
+    p=input("\n\n\tpremi invio per la prossima giornata\n")
 
     # Giorno 3
     print("\n--- Giorno 3 ---")
@@ -190,12 +200,16 @@ def main():
     perdente1 = nazioni[0] if vincitore1 != nazioni[0] else nazioni[1]
     perdente2 = nazioni[2] if vincitore2 != nazioni[2] else nazioni[3]
     vincitore_sera = hockey_partita(perdente1, perdente2, "sera")
+    p=input("\n\n\tpremi invio per la prossima giornata\n")
 
     # Giorno 4
     print("\n--- Giorno 4 ---")
     vincitore_finale = hockey_partita(vincitore_mattina, vincitore_sera, "mattina")
     gara_sci_fondo(nazioni, team_atleti, impianti, assegna_medaglie)
     gara_slittino_donne(nazioni, team_atleti, impianti, assegna_medaglie)
+    p=input("\n\n\tpremi invio per vedere il medagliere\n")
+    
+    albero_natale(altezza=10, simbolo='#')
 
     stampa_medagliere(nazioni, medagliere)
     print(f"\nCampione finale hockey: {vincitore_finale}")
